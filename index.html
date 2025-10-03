@@ -55,24 +55,33 @@
 <div id="modal-backdrop">
     <div id="modal-content">
         <div id="modal-header">
-            <h3 id="modal-titulo">Detalhes do Filme</h3>
             <span id="modal-close" onclick="UIManager.fecharModal()">&times;</span>
         </div>
-        <div id="modal-body">
-            <div id="modal-poster-container">
-                <img id="modal-poster" alt="Poster">
+        
+        <div id="modal-body-wrapper">
+            <div id="modal-poster-col">
+                <img id="modal-poster" alt="Poster do Filme">
+                <p id="modal-duracao" class="modal-chip"></p>
             </div>
-            <div id="modal-info">
-                <p><strong>Diretor:</strong> <span id="modal-diretor"></span></p>
-                <p><strong>Ano:</strong> <span id="modal-ano"></span></p>
-                <p><strong>Duração:</strong> <span id="modal-duracao"></span></p>
-                <p><strong>Personagens:</strong> <span id="modal-personagens"></span></p>
+            
+            <div id="modal-info-col">
+                <h3 id="modal-titulo" class="modal-main-title"></h3>
+
+                <div class="modal-meta-data">
+                    <p><i class="icon-calendar"></i> <strong>Ano:</strong> <span id="modal-ano"></span></p>
+                    <p><i class="icon-director"></i> <strong>Diretor:</strong> <span id="modal-diretor"></span></p>
+                </div>
+
+                <h4 class="modal-section-title">Sinopse</h4>
+                <p id="modal-sinopse" class="modal-sinopse-text"></p>
                 
-                <h4>Sinopse:</h4>
-                <p id="modal-sinopse"></p>
+                <h4 class="modal-section-title">Personagens Principais</h4>
+                <ul id="modal-personagens" class="modal-personagens-list">
+                    </ul>
                 
-                <h4>Trailer:</h4>
-                <a id="modal-trailer" href="#" target="_blank">Ver Trailer</a>
+                <a id="modal-trailer" href="#" target="_blank" class="modal-trailer-btn">
+                    <i class="icon-trailer"></i> Ver Trailer no YouTube
+                </a>
             </div>
         </div>
     </div>

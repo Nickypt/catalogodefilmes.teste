@@ -1,8 +1,7 @@
 const STORAGE_KEY = 'catalogoFilmes';
 
-// --- Dados Iniciais dos Filmes Solicitados ---
+// --- Dados Iniciais dos Filmes Solicitados (COM IDS) ---
 const FILMES_INICIAIS = [
-    // Seus filmes iniciais com IDs
     { id: 1, titulo: "Homem-Aranha: Através do Aranhaverso", diretor: "Joaquim Dos Santos, Kemp Powers, Justin Thompson", ano: 2023, sinopse: "Miles Morales é levado através do Multiverso, onde encontra uma equipe de Pessoas-Aranha encarregada de proteger a existência. Ele se vê em conflito com eles sobre como lidar com uma nova ameaça e precisa redefinir o que significa ser um herói.", personagens: ["Miles Morales / Homem-Aranha", "Gwen Stacy / Mulher-Aranha", "Peter B. Parker", "O Mancha", "Miguel O'Hara / Homem-Aranha 2099"], duracao: "140 min", poster: "https://m.media-amazon.com/images/M/MV5BMjYxNjkyMjQ5MF5BMl5BanBnXkFtZTgwNTQ2OTgxNTM@._V1_QL75_UY281_CR1,0,189,281_.jpg", trailer: "https://www.youtube.com/watch?v=shW9i6rnWKk" },
     { id: 2, titulo: "Faça Ela Voltar (Bring Her Back)", diretor: "Danny Philippou, Michael Philippou", ano: 2025, sinopse: "Dois meio-irmãos órfãos que acabam em um lar adotivo descobrem um ritual aterrorizante na casa isolada de sua nova guardiã, Laura. O filme explora o luto e os perigos de não conseguir deixar o passado ir.", personagens: ["Laura (Sally Hawkins)", "Andy (Billy Barratt)", "Piper (Sora Wong)"], duracao: "99 min", poster: "https://m.media-amazon.com/images/M/MV5BN2RjYThlZjUtYjVkNS00NTU1LWI0ZTYtYzQyNDM4M2ViMzU2XkEyXkFqcGdeQXVyMTYyMzgyNDQ5._V1_QL75_UY281_CR0,0,189,281_.jpg", trailer: "https://www.youtube.com/watch?v=TrailerFacaElaVoltar" },
     { id: 3, titulo: "Todo Mundo em Pânico", diretor: "Keenen Ivory Wayans", ano: 2000, sinopse: "Uma paródia que ridiculariza o gênero de terror slasher, especialmente 'Pânico' e 'Eu Sei O Que Vocês Fizeram no Verão Passado', onde um grupo de adolescentes desajeitados é caçado por um serial killer.", personagens: ["Cindy Campbell", "Shorty Meeks", "Ray Wilkins", "Brenda Meeks", "O Assassino"], duracao: "88 min", poster: "https://m.media-amazon.com/images/M/MV5BMjI0MDY0ODQwOV5BMl5BanBnXkFtZTYwNTc1NDk2._V1_QL75_UY281_CR3,0,189,281_.jpg", trailer: "https://www.youtube.com/watch?v=F9C-i_j87eA" },
@@ -40,10 +39,9 @@ const StorageManager = {
 // 2. UI Manager (Lógica de Interface e Ações)
 // ==========================================================
 const UIManager = {
-    // Armazena o estado de ordenação atual (campo e direção)
     estadoOrdenacao: { campo: 'titulo', order: 'asc' },
 
-    // --- Ações do Catálogo ---
+    // --- Funções de Ação Principal ---
     cadastrarFilme: () => {
         const titulo = document.getElementById('titulo').value.trim();
         const diretor = document.getElementById('diretor').value.trim();
@@ -113,14 +111,12 @@ const UIManager = {
         const filmes = StorageManager.carregar();
         let { campo: campoAtual, order } = UIManager.estadoOrdenacao;
 
-        // Inverte a ordem se o mesmo campo for clicado, senão reseta para 'asc'
         if (campo === campoAtual) {
             order = order === 'asc' ? 'desc' : 'asc';
         } else {
             order = 'asc';
         }
 
-        // Lógica de ordenação
         filmes.sort((a, b) => {
             let valA = a[campo];
             let valB = b[campo];
@@ -137,13 +133,11 @@ const UIManager = {
 
         UIManager.estadoOrdenacao = { campo, order };
         UIManager.listarFilmes(filmes);
-        // Opcional: Atualizar a seta ↕ no cabeçalho
     },
 
     exportarCSV: () => {
         const filmes = StorageManager.carregar();
-        // ... (Lógica de exportação completa da resposta anterior)
-        
+
         if (filmes.length === 0) {
             UIManager.mostrarToast('Não há filmes para exportar.', 'error');
             return;
@@ -233,23 +227,37 @@ const UIManager = {
     },
 
     exibirDetalhes: (filme) => {
-        // Popula o Modal
+        // Popula os campos no novo layout do Modal
         document.getElementById('modal-titulo').textContent = filme.titulo;
         document.getElementById('modal-diretor').textContent = filme.diretor;
         document.getElementById('modal-ano').textContent = filme.ano;
-        document.getElementById('modal-duracao').textContent = filme.duracao;
-        document.getElementById('modal-sinopse').textContent = filme.sinopse || 'N/A';
+        document.getElementById('modal-duracao').textContent = filme.duracao || 'N/A';
+        document.getElementById('modal-sinopse').textContent = filme.sinopse || 'Sinopse não disponível.';
         
-        const personagensLista = (filme.personagens.length > 0) ? filme.personagens.join(', ') : 'N/A';
-        document.getElementById('modal-personagens').textContent = personagensLista;
+        // Poster 
+        document.getElementById('modal-poster').src = filme.poster || 'https://via.placeholder.com/200x300?text=Sem+Poster';
         
-        // Poster e Trailer (Implementação do Modal)
-        document.getElementById('modal-poster').src = filme.poster || 'https://via.placeholder.com/180x270?text=Sem+Poster';
-        
+        // Lista de Personagens (Usando <ul> e <li>)
+        const ulPersonagens = document.getElementById('modal-personagens');
+        ulPersonagens.innerHTML = ''; // Limpa a lista antiga
+
+        if (filme.personagens.length > 0) {
+            filme.personagens.forEach(personagem => {
+                const li = document.createElement('li');
+                li.textContent = personagem;
+                ulPersonagens.appendChild(li);
+            });
+        } else {
+            const li = document.createElement('li');
+            li.textContent = 'Personagens não listados.';
+            ulPersonagens.appendChild(li);
+        }
+
+        // Trailer (Botão estilizado)
         const trailerElement = document.getElementById('modal-trailer');
         if (filme.trailer && filme.trailer.startsWith('http')) {
             trailerElement.href = filme.trailer;
-            trailerElement.style.display = 'inline-block';
+            trailerElement.style.display = 'inline-flex'; 
         } else {
             trailerElement.style.display = 'none';
         }
@@ -263,22 +271,15 @@ const UIManager = {
     },
 
     // --- Toast Notification ---
-    /**
-     * Exibe uma notificação Toast.
-     * @param {string} message - Mensagem a ser exibida.
-     * @param {string} type - 'success' ou 'error'.
-     */
     mostrarToast: (message, type = 'success') => {
         const toast = document.getElementById('toast-notification');
         toast.textContent = message;
         
-        toast.className = ''; // Remove classes anteriores
+        toast.className = ''; 
         toast.classList.add(type === 'error' ? 'toast-error' : 'toast-success');
         
-        // Exibe
         toast.classList.remove('toast-hidden');
 
-        // Oculta após 3 segundos
         setTimeout(() => {
             toast.classList.add('toast-hidden');
         }, 3000);
