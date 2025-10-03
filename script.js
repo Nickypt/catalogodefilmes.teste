@@ -50,7 +50,7 @@ const FILMES_INICIAIS = [
         sinopse: "O jornalista Eddie Brock se torna hospedeiro de um simbionte alienígena que lhe confere habilidades sobre-humanas. Ele deve equilibrar a necessidade de controlar a criatura com a de usá-la para deter uma ameaça maior.",
         personagens: ["Eddie Brock / Venom", "Anne Weying", "Dr. Carlton Drake / Riot"],
         duracao: "140 min",
-        poster: "https://m.media-amazon.com/images/M/MV5BNzBlZTIwZDYtZDIzMS00Y2U3LWJkMTktNDg4YzI5Y2RiYmFlXkEyXkFqcGdeQXVyMTA3MDk2NDc2._V1_QL75_UY281_CR1,0,189,281_.jpg",
+        poster: "https://image.tmdb.org/t/p/w1280/nbtm0juWvRnpP4GVUo2mUh529mN.jpg",
         trailer: "https://www.youtube.com/watch?v=XhNl9Ld5H38"
     }
 ];
