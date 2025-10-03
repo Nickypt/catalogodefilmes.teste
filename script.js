@@ -10,7 +10,7 @@ const FILMES_INICIAIS = [
         sinopse: "Miles Morales é levado através do Multiverso, onde encontra uma equipe de Pessoas-Aranha encarregada de proteger a existência. Ele se vê em conflito com eles sobre como lidar com uma nova ameaça e precisa redefinir o que significa ser um herói.",
         personagens: ["Miles Morales / Homem-Aranha", "Gwen Stacy / Mulher-Aranha", "Peter B. Parker", "O Mancha", "Miguel O'Hara / Homem-Aranha 2099"],
         duracao: "140 min",
-        poster: "https://m.media-amazon.com/images/M/MV5BMjYxNjkyMjQ5MF5BMl5BanBnXkFtZTgwNTQ2OTgxNTM@._V1_QL75_UY281_CR1,0,189,281_.jpg", // Exemplo de URL de poster
+        poster:"https://tse1.mm.bing.net/th/id/OIP.0HRwXnriUsW_aM6BoroIQAHaLH?cb=12&rs=1&pid=ImgDetMain&o=7&rm=3", // Exemplo de URL de poster
         trailer: "https://www.youtube.com/watch?v=shW9i6rnWKk" 
     },
     {
@@ -30,7 +30,7 @@ const FILMES_INICIAIS = [
         sinopse: "Uma paródia que ridiculariza o gênero de terror slasher, especialmente 'Pânico' e 'Eu Sei O Que Vocês Fizeram no Verão Passado', onde um grupo de adolescentes desajeitados é caçado por um serial killer.",
         personagens: ["Cindy Campbell", "Shorty Meeks", "Ray Wilkins", "Brenda Meeks", "O Assassino"],
         duracao: "88 min",
-        poster: "https://m.media-amazon.com/images/M/MV5BMjI0MDY0ODQwOV5BMl5BanBnXkFtZTYwNTc1NDk2._V1_QL75_UY281_CR3,0,189,281_.jpg",
+        poster: "https://media.fstatic.com/3QThGeGbpnG6tvO4k4UCN34JYtk=/210x312/smart/filters:format(webp)/media/movies/covers/2025/06/1000028246.jpg ",
         trailer: "https://www.youtube.com/watch?v=F9C-i_j87eA"
     },
     {
@@ -40,7 +40,7 @@ const FILMES_INICIAIS = [
         sinopse: "Um casal adota a jovem Esther, de 9 anos. A meiguice da garota esconde um segredo terrível: Esther não é quem diz ser, e sua presença coloca a vida de toda a família em risco de morte.",
         personagens: ["Esther / Leena Klammer", "Kate Coleman", "John Coleman"],
         duracao: "123 min",
-        poster: "https://m.media-amazon.com/images/M/MV5BMTY5MjQ0ODQ3M15BMl5BanBnXkFtZTcwNzcyNjMzMg@@._V1_QL75_UY281_CR1,0,189,281_.jpg",
+        poster: " ",
         trailer: "https://www.youtube.com/watch?v=K_a4b08X55Y"
     },
     {
