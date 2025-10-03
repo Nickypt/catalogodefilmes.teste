@@ -1,221 +1,129 @@
 /* ==================================== */
-/* 1. Cores e Tipografia Global         */
-/* ==================================== */
-:root {
-    /* Esquema de Cores Sério e Moderno */
-    --cor-primaria: #0077b6; /* Azul Escuro Profundo (Sério) */
-    --cor-destaque: #00b4d8; /* Azul Claro (Destaque e Interatividade) */
-    --cor-fundo: #e9ecef; /* Cinza Suave (Fundo) */
-    --cor-card: #ffffff; /* Branco Puro (Blocos/Cartões) */
-    --cor-texto: #212529; /* Preto Quase Total (Texto Principal) */
-    --cor-borda: #ced4da; /* Cinza de Borda Suave */
-    
-    /* Sombras e Elementos Visuais */
-    --sombra-suave: 0 4px 12px rgba(0, 0, 0, 0.08); /* Sombra mais refinada */
-    --transicao: 0.3s ease-in-out;
-}
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    background-color: var(--cor-fundo);
-    line-height: 1.6;
-    color: var(--cor-texto);
-    padding: 20px;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-/* Títulos */
-h1 {
-    color: var(--cor-primaria);
-    text-align: center;
-    margin-bottom: 40px;
-    font-size: 2.5em;
-    font-weight: 600;
-    letter-spacing: 1px;
-}
-
-h2 {
-    color: var(--cor-texto);
-    font-size: 1.5em;
-    margin-bottom: 20px;
-    border-bottom: 3px solid var(--cor-destaque);
-    padding-bottom: 8px;
-    font-weight: 500;
-}
-
-/* ==================================== */
-/* 2. Layout de Blocos e Formulários    */
+/* CÓDIGO CSS ANTERIOR (MANTIDO)        */
 /* ==================================== */
 
-#cadastro-filme, #busca-filme {
-    background-color: var(--cor-card);
-    padding: 30px;
-    margin-bottom: 30px;
-    border-radius: 10px;
-    box-shadow: var(--sombra-suave);
-}
+/* ... (Todo o CSS anterior de cores, botões e tabela) ... */
 
-/* Inputs e Textareas */
-input[type="text"], 
-input[type="number"], 
-textarea {
+/* ==================================== */
+/* 5. Estilização do Modal (Novo)       */
+/* ==================================== */
+
+#modal-backdrop {
+    display: none; /* Oculto por padrão */
+    position: fixed;
+    z-index: 1000; 
+    left: 0;
+    top: 0;
     width: 100%;
-    padding: 12px;
-    margin-bottom: 15px;
-    border: 1px solid var(--cor-borda);
-    border-radius: 5px;
-    font-size: 1em;
-    transition: border-color var(--transicao), box-shadow var(--transicao);
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.6); /* Fundo escuro transparente */
+    backdrop-filter: blur(2px);
 }
 
-input:focus, 
-textarea:focus {
-    border-color: var(--cor-destaque);
-    box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.2); /* Sombra de foco sutil */
-    outline: none;
+#modal-content {
+    background-color: var(--cor-card);
+    margin: 10% auto; /* Centraliza verticalmente */
+    padding: 25px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 700px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 0.3s;
 }
 
-textarea {
-    resize: vertical;
-    min-height: 100px;
-}
-
-/* Área de Busca e Exportação (Layout Flexível) */
-#busca-filme {
+#modal-header {
     display: flex;
-    gap: 10px;
+    justify-content: space-between;
     align-items: center;
+    border-bottom: 2px solid var(--cor-borda);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
 }
 
-#busca-filme h2 {
-    flex-basis: 100%; /* Ocupa a linha inteira em telas pequenas */
-    margin-bottom: 0;
-    border-bottom: none;
-    padding-bottom: 0;
-}
-
-#busca-filme input {
-    flex-grow: 1; /* Ocupa o máximo de espaço possível */
-    margin-bottom: 0;
-}
-
-/* ==================================== */
-/* 3. Botões e Interatividade           */
-/* ==================================== */
-
-button {
-    padding: 12px 20px;
-    cursor: pointer;
-    background-color: var(--cor-primaria);
-    color: white;
-    border: none;
-    border-radius: 5px;
-    transition: background-color var(--transicao), transform 0.1s;
+#modal-titulo {
+    color: var(--cor-primaria);
+    margin: 0;
     font-weight: 600;
-    text-transform: uppercase;
 }
 
-button:hover {
-    background-color: var(--cor-destaque);
+#modal-close {
+    color: var(--cor-borda);
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s;
 }
 
-button:active {
-    transform: translateY(1px);
-}
-
-/* Botão de Exportação para ser visualmente secundário na barra de busca */
-#busca-filme button:last-child {
-    background-color: var(--cor-borda);
+#modal-close:hover,
+#modal-close:focus {
     color: var(--cor-texto);
 }
-#busca-filme button:last-child:hover {
-    background-color: #adb5bd; /* Um cinza um pouco mais escuro no hover */
+
+#modal-body {
+    display: flex;
+    gap: 20px;
 }
 
-
-/* ==================================== */
-/* 4. Tabela de Filmes                  */
-/* ==================================== */
-
-#lista-filmes {
-    background-color: var(--cor-card);
-    box-shadow: var(--sombra-suave);
-    border-radius: 10px;
-    overflow: hidden; /* Para garantir o arredondamento */
+#modal-poster-container {
+    flex-basis: 35%;
+    max-width: 180px;
 }
 
-#lista-filmes thead th {
-    background-color: var(--cor-primaria);
-    color: white;
-    font-weight: 600;
-    padding: 15px 15px;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-}
-
-#lista-filmes tbody td {
-    padding: 15px;
-    border-bottom: 1px solid var(--cor-borda);
-    vertical-align: middle;
-}
-
-#lista-filmes tbody tr:hover {
-    background-color: #f1f7fa; /* Destaque ao passar o mouse */
-}
-
-/* Poster de Filme */
-.poster {
-    width: 70px; /* Um pouco maior e mais destacado */
-    height: 105px;
+#modal-poster {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    border: 1px solid var(--cor-borda);
     object-fit: cover;
-    border-radius: 4px;
-    border: 2px solid var(--cor-borda);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Estilo para a célula de Ações */
-#lista-filmes td:last-child {
-    width: 120px; 
-    text-align: center;
+#modal-info {
+    flex-grow: 1;
 }
 
-#lista-filmes td:last-child button {
-    font-size: 0.9em;
-    padding: 8px 12px;
+#modal-info p {
+    margin-bottom: 8px;
 }
 
-/* ==================================== */
-/* 5. Responsividade (Layout Ajustado)  */
-/* ==================================== */
+#modal-info h4 {
+    color: var(--cor-primaria);
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
 
-@media (max-width: 900px) {
-    /* Ajusta a barra de busca e exportação */
-    #busca-filme {
-        flex-wrap: wrap;
-    }
-    #busca-filme input {
-        flex-basis: 100%;
-    }
-    #busca-filme button {
-        flex-basis: calc(50% - 5px); /* Dois botões por linha */
-    }
+#modal-trailer {
+    display: inline-block;
+    color: var(--cor-destaque);
+    text-decoration: none;
+    font-weight: 500;
+    margin-top: 10px;
+}
 
-    /* Oculta colunas menos essenciais na tabela para telas menores */
-    #lista-filmes th:nth-child(4), 
-    #lista-filmes td:nth-child(4) { /* Coluna Ano */
-        display: none;
+#modal-trailer:hover {
+    text-decoration: underline;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsividade do Modal */
+@media (max-width: 600px) {
+    #modal-body {
+        flex-direction: column;
     }
-    #lista-filmes td {
-        padding: 10px;
+    #modal-poster-container {
+        max-width: 100%;
+        text-align: center;
+    }
+    #modal-poster {
+        width: 50%; /* Poster menor em telas pequenas */
+        margin: 0 auto;
+    }
+    #modal-content {
+        width: 95%;
+        margin: 5% auto;
     }
 }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo de Filmes </title>
+    <title>Catálogo de Filmes JS Completo</title>
     
     <link rel="stylesheet" href="style.css"> 
 
@@ -50,6 +50,32 @@
         <tbody>
             </tbody>
     </table>
+</div>
+
+<div id="modal-backdrop">
+    <div id="modal-content">
+        <div id="modal-header">
+            <h3 id="modal-titulo">Detalhes do Filme</h3>
+            <span id="modal-close" onclick="fecharModal()">&times;</span>
+        </div>
+        <div id="modal-body">
+            <div id="modal-poster-container">
+                <img id="modal-poster" alt="Poster">
+            </div>
+            <div id="modal-info">
+                <p><strong>Diretor:</strong> <span id="modal-diretor"></span></p>
+                <p><strong>Ano:</strong> <span id="modal-ano"></span></p>
+                <p><strong>Duração:</strong> <span id="modal-duracao"></span></p>
+                <p><strong>Personagens:</strong> <span id="modal-personagens"></span></p>
+                
+                <h4>Sinopse:</h4>
+                <p id="modal-sinopse"></p>
+                
+                <h4>Trailer:</h4>
+                <a id="modal-trailer" href="#" target="_blank">Ver Trailer no YouTube</a>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script src="script.js"></script>
