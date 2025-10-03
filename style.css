@@ -1,13 +1,18 @@
 /* ==================================== */
-/* 1. Reset Básico e Fontes            */
+/* 1. Cores e Tipografia Global         */
 /* ==================================== */
 :root {
-    --cor-principal: #007bff; /* Azul vibrante para botões e destaque */
-    --cor-secundaria: #6c757d; /* Cinza para texto secundário */
-    --cor-fundo: #f8f9fa; /* Fundo levemente cinza */
-    --cor-card: #ffffff; /* Fundo dos blocos */
-    --cor-borda: #dee2e6;
-    --sombra: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* Esquema de Cores Sério e Moderno */
+    --cor-primaria: #0077b6; /* Azul Escuro Profundo (Sério) */
+    --cor-destaque: #00b4d8; /* Azul Claro (Destaque e Interatividade) */
+    --cor-fundo: #e9ecef; /* Cinza Suave (Fundo) */
+    --cor-card: #ffffff; /* Branco Puro (Blocos/Cartões) */
+    --cor-texto: #212529; /* Preto Quase Total (Texto Principal) */
+    --cor-borda: #ced4da; /* Cinza de Borda Suave */
+    
+    /* Sombras e Elementos Visuais */
+    --sombra-suave: 0 4px 12px rgba(0, 0, 0, 0.08); /* Sombra mais refinada */
+    --transicao: 0.3s ease-in-out;
 }
 
 * {
@@ -17,28 +22,35 @@
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     background-color: var(--cor-fundo);
     line-height: 1.6;
+    color: var(--cor-texto);
     padding: 20px;
 }
 
 .container {
-    max-width: 1100px;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
+/* Títulos */
 h1 {
-    color: var(--cor-principal);
+    color: var(--cor-primaria);
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
+    font-size: 2.5em;
+    font-weight: 600;
+    letter-spacing: 1px;
 }
 
 h2 {
-    color: var(--cor-secundaria);
-    margin-bottom: 15px;
-    border-bottom: 2px solid var(--cor-borda);
-    padding-bottom: 5px;
+    color: var(--cor-texto);
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    border-bottom: 3px solid var(--cor-destaque);
+    padding-bottom: 8px;
+    font-weight: 500;
 }
 
 /* ==================================== */
@@ -47,71 +59,89 @@ h2 {
 
 #cadastro-filme, #busca-filme {
     background-color: var(--cor-card);
-    padding: 20px;
-    margin-bottom: 25px;
-    border-radius: 8px;
-    box-shadow: var(--sombra);
+    padding: 30px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    box-shadow: var(--sombra-suave);
 }
 
+/* Inputs e Textareas */
 input[type="text"], 
 input[type="number"], 
 textarea {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
+    padding: 12px;
+    margin-bottom: 15px;
     border: 1px solid var(--cor-borda);
-    border-radius: 4px;
-    transition: border-color 0.3s;
+    border-radius: 5px;
+    font-size: 1em;
+    transition: border-color var(--transicao), box-shadow var(--transicao);
 }
 
 input:focus, 
 textarea:focus {
-    border-color: var(--cor-principal);
+    border-color: var(--cor-destaque);
+    box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.2); /* Sombra de foco sutil */
     outline: none;
 }
 
 textarea {
     resize: vertical;
-    min-height: 80px;
+    min-height: 100px;
 }
 
-/* Layout para a área de busca e exportação */
+/* Área de Busca e Exportação (Layout Flexível) */
+#busca-filme {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+#busca-filme h2 {
+    flex-basis: 100%; /* Ocupa a linha inteira em telas pequenas */
+    margin-bottom: 0;
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
 #busca-filme input {
-    width: calc(100% - 200px); /* Ajusta espaço para os botões */
-    margin-right: 10px;
-    display: inline-block;
-}
-
-#busca-filme button {
-    width: 90px;
+    flex-grow: 1; /* Ocupa o máximo de espaço possível */
+    margin-bottom: 0;
 }
 
 /* ==================================== */
-/* 3. Botões e Ações                    */
+/* 3. Botões e Interatividade           */
 /* ==================================== */
 
 button {
-    padding: 10px 15px;
+    padding: 12px 20px;
     cursor: pointer;
-    background-color: var(--cor-principal);
+    background-color: var(--cor-primaria);
     color: white;
     border: none;
-    border-radius: 4px;
-    transition: background-color 0.3s;
-    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color var(--transicao), transform 0.1s;
+    font-weight: 600;
+    text-transform: uppercase;
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: var(--cor-destaque);
 }
 
-/* Botão secundário de exportação */
+button:active {
+    transform: translateY(1px);
+}
+
+/* Botão de Exportação para ser visualmente secundário na barra de busca */
 #busca-filme button:last-child {
-    background-color: var(--cor-secundaria);
+    background-color: var(--cor-borda);
+    color: var(--cor-texto);
 }
 #busca-filme button:last-child:hover {
-    background-color: #5a6268;
+    background-color: #adb5bd; /* Um cinza um pouco mais escuro no hover */
 }
+
 
 /* ==================================== */
 /* 4. Tabela de Filmes                  */
@@ -119,68 +149,73 @@ button:hover {
 
 #lista-filmes {
     background-color: var(--cor-card);
-    box-shadow: var(--sombra);
-    border-radius: 8px;
-    overflow: hidden; /* Garante que a borda arredondada se aplique */
+    box-shadow: var(--sombra-suave);
+    border-radius: 10px;
+    overflow: hidden; /* Para garantir o arredondamento */
 }
 
 #lista-filmes thead th {
-    background-color: var(--cor-principal);
+    background-color: var(--cor-primaria);
     color: white;
-    font-weight: bold;
+    font-weight: 600;
+    padding: 15px 15px;
+    letter-spacing: 0.5px;
     text-transform: uppercase;
-    padding: 15px 12px;
 }
 
 #lista-filmes tbody td {
-    padding: 12px;
+    padding: 15px;
     border-bottom: 1px solid var(--cor-borda);
     vertical-align: middle;
 }
 
-#lista-filmes tbody tr:nth-child(even) {
-    background-color: #f2f2f2; /* Listras para melhor leitura */
+#lista-filmes tbody tr:hover {
+    background-color: #f1f7fa; /* Destaque ao passar o mouse */
 }
 
 /* Poster de Filme */
 .poster {
-    width: 60px; /* Um pouco maior */
-    height: 90px;
+    width: 70px; /* Um pouco maior e mais destacado */
+    height: 105px;
     object-fit: cover;
     border-radius: 4px;
-    border: 1px solid var(--cor-borda);
+    border: 2px solid var(--cor-borda);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* Estilo para a célula de Ações */
 #lista-filmes td:last-child {
-    width: 100px; /* Largura fixa para o botão */
+    width: 120px; 
     text-align: center;
 }
 
+#lista-filmes td:last-child button {
+    font-size: 0.9em;
+    padding: 8px 12px;
+}
+
 /* ==================================== */
-/* 5. Responsividade (Opcional, mas útil) */
+/* 5. Responsividade (Layout Ajustado)  */
 /* ==================================== */
 
-@media (max-width: 768px) {
-    body {
-        padding: 10px;
+@media (max-width: 900px) {
+    /* Ajusta a barra de busca e exportação */
+    #busca-filme {
+        flex-wrap: wrap;
     }
-    
     #busca-filme input {
-        width: 100%;
-        margin-bottom: 10px;
+        flex-basis: 100%;
     }
-
     #busca-filme button {
-        width: 100%;
-        margin-bottom: 5px;
+        flex-basis: calc(50% - 5px); /* Dois botões por linha */
     }
 
-    /* Oculta colunas menos importantes em telas pequenas (manter Poster, Título e Ações) */
-    #lista-filmes th:nth-child(3), 
-    #lista-filmes td:nth-child(3), /* Diretor */
-    #lista-filmes th:nth-child(4),
-    #lista-filmes td:nth-child(4) { /* Ano */
+    /* Oculta colunas menos essenciais na tabela para telas menores */
+    #lista-filmes th:nth-child(4), 
+    #lista-filmes td:nth-child(4) { /* Coluna Ano */
         display: none;
+    }
+    #lista-filmes td {
+        padding: 10px;
     }
 }
