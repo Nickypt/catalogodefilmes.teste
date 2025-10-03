@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Filmes JS Completo</title>
+    <style>
+        /* Estilos básicos */
+        body { font-family: sans-serif; margin: 20px; background-color: #f4f4f4; }
+        .container { max-width: 900px; margin: auto; background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }
+        #cadastro-filme, #busca-filme { border: 1px solid #ccc; padding: 15px; margin-bottom: 20px; border-radius: 5px; background-color: #fafafa; }
+        input[type="text"], input[type="number"], textarea { width: 100%; padding: 10px; margin-bottom: 10px; box-sizing: border-box; border: 1px solid #ddd; border-radius: 3px; }
+        textarea { resize: vertical; }
+        button { padding: 10px 15px; cursor: pointer; background-color: #007bff; color: white; border: none; border-radius: 3px; margin-right: 5px; }
+        button:hover { background-color: #0056b3; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background-color: #e9ecef; }
+        .poster { width: 50px; height: 75px; object-fit: cover; border-radius: 3px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Catálogo de Filmes</h1>
+
+    <div id="cadastro-filme">
+        <h2>Cadastrar Novo Filme</h2>
+        <input type="text" id="titulo" placeholder="Título do Filme" required>
+        <input type="text" id="diretor" placeholder="Diretor" required>
+        <input type="number" id="ano" placeholder="Ano de Lançamento" min="1888" max="2099" required>
+        <input type="text" id="duracao" placeholder="Duração (ex: 140 min)">
+        <textarea id="sinopse" placeholder="Sinopse"></textarea>
+        <input type="text" id="personagens" placeholder="Personagens Principais (separados por vírgula)">
+        <input type="text" id="posterUrl" placeholder="URL da Imagem (Poster)"> 
+        <input type="text" id="trailer" placeholder="URL do Trailer (YouTube)"> 
+
+        <button onclick="cadastrarFilme()">Cadastrar Filme</button>
+    </div>
+
+    <div id="busca-filme">
+        <h2>Buscar Filmes</h2>
+        <input type="text" id="termoBusca" placeholder="Buscar por Título ou Diretor">
+        <button onclick="buscarFilmes()">Buscar</button>
+        <button onclick="exportarCSV()">Exportar para CSV</button>
+    </div>
+
+    <hr>
+
+    <h2>Lista de Filmes</h2>
+    <table id="lista-filmes">
+        <thead>
+            <tr>
+                <th>Poster</th>
+                <th>Título</th>
+                <th>Diretor</th>
+                <th>Ano</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            </tbody>
+    </table>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
