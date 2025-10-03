@@ -30,7 +30,7 @@ const FILMES_INICIAIS = [
         sinopse: "Uma paródia que ridiculariza o gênero de terror slasher, especialmente 'Pânico' e 'Eu Sei O Que Vocês Fizeram no Verão Passado', onde um grupo de adolescentes desajeitados é caçado por um serial killer.",
         personagens: ["Cindy Campbell", "Shorty Meeks", "Ray Wilkins", "Brenda Meeks", "O Assassino"],
         duracao: "88 min",
-        poster: "https://media.fstatic.com/3QThGeGbpnG6tvO4k4UCN34JYtk=/210x312/smart/filters:format(webp)/media/movies/covers/2025/06/1000028246.jpg ",
+        poster: "https://cinemaweb.com.br/wp-content/uploads/2024/06/poster-todo-mundo-em-panico-2000.jpg ",
         trailer: "https://www.youtube.com/watch?v=F9C-i_j87eA"
     },
     {
@@ -40,7 +40,7 @@ const FILMES_INICIAIS = [
         sinopse: "Um casal adota a jovem Esther, de 9 anos. A meiguice da garota esconde um segredo terrível: Esther não é quem diz ser, e sua presença coloca a vida de toda a família em risco de morte.",
         personagens: ["Esther / Leena Klammer", "Kate Coleman", "John Coleman"],
         duracao: "123 min",
-        poster: " ",
+        poster: "https://image.tmdb.org/t/p/original/sr2EbjW1IggsXTmqhwKP2ECrUYV.jpg ",
         trailer: "https://www.youtube.com/watch?v=K_a4b08X55Y"
     },
     {
