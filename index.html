@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo de Filmes JS Completo</title>
+    <title>Catálogo de Filmes Profissional</title>
     
     <link rel="stylesheet" href="style.css"> 
 
@@ -24,14 +24,14 @@
         <input type="text" id="posterUrl" placeholder="URL da Imagem (Poster)"> 
         <input type="text" id="trailer" placeholder="URL do Trailer (YouTube)"> 
 
-        <button onclick="cadastrarFilme()">Cadastrar Filme</button>
+        <button onclick="UIManager.cadastrarFilme()">Cadastrar Filme</button>
     </div>
 
     <div id="busca-filme">
         <h2>Buscar Filmes</h2>
-        <input type="text" id="termoBusca" placeholder="Buscar por Título ou Diretor">
-        <button onclick="buscarFilmes()">Buscar</button>
-        <button onclick="exportarCSV()">Exportar para CSV</button>
+        <input type="text" id="termoBusca" placeholder="Buscar por Título ou Diretor" onkeyup="UIManager.buscarFilmes()">
+        <button onclick="UIManager.buscarFilmes()">Buscar</button>
+        <button onclick="UIManager.exportarCSV()">Exportar para CSV</button>
     </div>
 
     <hr>
@@ -41,9 +41,9 @@
         <thead>
             <tr>
                 <th>Poster</th>
-                <th>Título</th>
-                <th>Diretor</th>
-                <th>Ano</th>
+                <th onclick="UIManager.ordenarFilmes('titulo')" data-order="asc">Título ↕</th>
+                <th onclick="UIManager.ordenarFilmes('diretor')" data-order="asc">Diretor ↕</th>
+                <th onclick="UIManager.ordenarFilmes('ano')" data-order="asc">Ano ↕</th>
                 <th>Ações</th>
             </tr>
         </thead>
@@ -56,7 +56,7 @@
     <div id="modal-content">
         <div id="modal-header">
             <h3 id="modal-titulo">Detalhes do Filme</h3>
-            <span id="modal-close" onclick="fecharModal()">&times;</span>
+            <span id="modal-close" onclick="UIManager.fecharModal()">&times;</span>
         </div>
         <div id="modal-body">
             <div id="modal-poster-container">
@@ -72,11 +72,14 @@
                 <p id="modal-sinopse"></p>
                 
                 <h4>Trailer:</h4>
-                <a id="modal-trailer" href="#" target="_blank">Ver Trailer no YouTube</a>
+                <a id="modal-trailer" href="#" target="_blank">Ver Trailer</a>
             </div>
         </div>
     </div>
 </div>
+
+<div id="toast-notification" class="toast-hidden"></div>
+
 
 <script src="script.js"></script>
 

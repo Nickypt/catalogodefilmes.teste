@@ -1,129 +1,204 @@
 /* ==================================== */
-/* CÓDIGO CSS ANTERIOR (MANTIDO)        */
+/* 1. Cores e Tipografia Global         */
 /* ==================================== */
-
-/* ... (Todo o CSS anterior de cores, botões e tabela) ... */
-
-/* ==================================== */
-/* 5. Estilização do Modal (Novo)       */
-/* ==================================== */
-
-#modal-backdrop {
-    display: none; /* Oculto por padrão */
-    position: fixed;
-    z-index: 1000; 
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.6); /* Fundo escuro transparente */
-    backdrop-filter: blur(2px);
+:root {
+    /* Esquema de Cores Sério e Moderno */
+    --cor-primaria: #0077b6; 
+    --cor-destaque: #00b4d8; 
+    --cor-fundo: #e9ecef; 
+    --cor-card: #ffffff; 
+    --cor-texto: #212529; 
+    --cor-borda: #ced4da; 
+    --cor-sucesso: #28a745; /* Verde para Toast */
+    --cor-erro: #dc3545; /* Vermelho para Excluir/Erro */
+    
+    /* Sombras e Elementos Visuais */
+    --sombra-suave: 0 4px 12px rgba(0, 0, 0, 0.08); 
+    --transicao: 0.3s ease-in-out;
 }
 
-#modal-content {
-    background-color: var(--cor-card);
-    margin: 10% auto; /* Centraliza verticalmente */
-    padding: 25px;
-    border-radius: 8px;
-    width: 80%;
-    max-width: 700px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    animation: fadeIn 0.3s;
-}
-
-#modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 2px solid var(--cor-borda);
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-}
-
-#modal-titulo {
-    color: var(--cor-primaria);
+* {
+    box-sizing: border-box;
     margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--cor-fundo);
+    line-height: 1.6;
+    color: var(--cor-texto);
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+h1 {
+    color: var(--cor-primaria);
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.5em;
     font-weight: 600;
+    letter-spacing: 1px;
 }
 
-#modal-close {
-    color: var(--cor-borda);
-    font-size: 28px;
-    font-weight: bold;
+h2 {
+    color: var(--cor-texto);
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    border-bottom: 3px solid var(--cor-destaque);
+    padding-bottom: 8px;
+    font-weight: 500;
+}
+
+/* ==================================== */
+/* 2. Layout de Blocos e Formulários    */
+/* ==================================== */
+
+#cadastro-filme, #busca-filme {
+    background-color: var(--cor-card);
+    padding: 30px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    box-shadow: var(--sombra-suave);
+}
+
+input[type="text"], 
+input[type="number"], 
+textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid var(--cor-borda);
+    border-radius: 5px;
+    font-size: 1em;
+    transition: border-color var(--transicao), box-shadow var(--transicao);
+}
+
+input:focus, 
+textarea:focus {
+    border-color: var(--cor-destaque);
+    box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.2); 
+    outline: none;
+}
+
+#busca-filme {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+#busca-filme h2 {
+    flex-basis: 100%;
+    margin-bottom: 0;
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+#busca-filme input {
+    flex-grow: 1;
+    margin-bottom: 0;
+}
+
+/* ==================================== */
+/* 3. Botões e Ações                    */
+/* ==================================== */
+
+button {
+    padding: 12px 20px;
     cursor: pointer;
-    transition: color 0.3s;
+    background-color: var(--cor-primaria);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background-color var(--transicao), transform 0.1s;
+    font-weight: 600;
+    text-transform: uppercase;
 }
 
-#modal-close:hover,
-#modal-close:focus {
+button:hover {
+    background-color: var(--cor-destaque);
+}
+
+button:active {
+    transform: translateY(1px);
+}
+
+#busca-filme button:last-child {
+    background-color: var(--cor-borda);
     color: var(--cor-texto);
 }
-
-#modal-body {
-    display: flex;
-    gap: 20px;
+#busca-filme button:last-child:hover {
+    background-color: #adb5bd;
 }
 
-#modal-poster-container {
-    flex-basis: 35%;
-    max-width: 180px;
-}
-
-#modal-poster {
-    width: 100%;
-    height: auto;
-    border-radius: 5px;
-    border: 1px solid var(--cor-borda);
-    object-fit: cover;
-}
-
-#modal-info {
-    flex-grow: 1;
-}
-
-#modal-info p {
-    margin-bottom: 8px;
-}
-
-#modal-info h4 {
-    color: var(--cor-primaria);
-    margin-top: 15px;
-    margin-bottom: 5px;
-}
-
-#modal-trailer {
-    display: inline-block;
-    color: var(--cor-destaque);
-    text-decoration: none;
+/* Estilo para o botão Excluir */
+.btn-excluir {
+    background-color: var(--cor-erro) !important;
+    transition: background-color 0.3s;
     font-weight: 500;
-    margin-top: 10px;
+}
+.btn-excluir:hover {
+    background-color: #c82333 !important;
 }
 
-#modal-trailer:hover {
-    text-decoration: underline;
+
+/* ==================================== */
+/* 4. Tabela de Filmes (Com Ordenação)  */
+/* ==================================== */
+
+#lista-filmes {
+    background-color: var(--cor-card);
+    box-shadow: var(--sombra-suave);
+    border-radius: 10px;
+    overflow: hidden;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
+#lista-filmes thead th {
+    background-color: var(--cor-primaria);
+    color: white;
+    font-weight: 600;
+    padding: 15px 15px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    /* Torna cabeçalhos de ordenação clicáveis */
+    cursor: pointer; 
+    transition: background-color 0.2s;
 }
 
-/* Responsividade do Modal */
-@media (max-width: 600px) {
-    #modal-body {
-        flex-direction: column;
-    }
-    #modal-poster-container {
-        max-width: 100%;
-        text-align: center;
-    }
-    #modal-poster {
-        width: 50%; /* Poster menor em telas pequenas */
-        margin: 0 auto;
-    }
-    #modal-content {
-        width: 95%;
-        margin: 5% auto;
-    }
+#lista-filmes thead th:hover {
+    background-color: #006399; /* Cor mais escura no hover */
+}
+
+/* ... (Resto da estilização de tabela, modal e responsividade) ... */
+
+/* ==================================== */
+/* 6. Toast Notification (Novo)         */
+/* ==================================== */
+
+#toast-notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: var(--cor-sucesso);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 5px;
+    box-shadow: var(--sombra-suave);
+    z-index: 2000;
+    opacity: 1;
+    transition: opacity 0.5s, transform 0.5s;
+}
+
+.toast-hidden {
+    opacity: 0 !important;
+    transform: translateY(100px); /* Move para fora da tela */
+    pointer-events: none; /* Não interage com o mouse quando oculto */
+}
+
+.toast-error {
+    background-color: var(--cor-erro);
 }
