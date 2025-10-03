@@ -1,0 +1,186 @@
+/* ==================================== */
+/* 1. Reset Básico e Fontes            */
+/* ==================================== */
+:root {
+    --cor-principal: #007bff; /* Azul vibrante para botões e destaque */
+    --cor-secundaria: #6c757d; /* Cinza para texto secundário */
+    --cor-fundo: #f8f9fa; /* Fundo levemente cinza */
+    --cor-card: #ffffff; /* Fundo dos blocos */
+    --cor-borda: #dee2e6;
+    --sombra: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--cor-fundo);
+    line-height: 1.6;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+h1 {
+    color: var(--cor-principal);
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+h2 {
+    color: var(--cor-secundaria);
+    margin-bottom: 15px;
+    border-bottom: 2px solid var(--cor-borda);
+    padding-bottom: 5px;
+}
+
+/* ==================================== */
+/* 2. Layout de Blocos e Formulários    */
+/* ==================================== */
+
+#cadastro-filme, #busca-filme {
+    background-color: var(--cor-card);
+    padding: 20px;
+    margin-bottom: 25px;
+    border-radius: 8px;
+    box-shadow: var(--sombra);
+}
+
+input[type="text"], 
+input[type="number"], 
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid var(--cor-borda);
+    border-radius: 4px;
+    transition: border-color 0.3s;
+}
+
+input:focus, 
+textarea:focus {
+    border-color: var(--cor-principal);
+    outline: none;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* Layout para a área de busca e exportação */
+#busca-filme input {
+    width: calc(100% - 200px); /* Ajusta espaço para os botões */
+    margin-right: 10px;
+    display: inline-block;
+}
+
+#busca-filme button {
+    width: 90px;
+}
+
+/* ==================================== */
+/* 3. Botões e Ações                    */
+/* ==================================== */
+
+button {
+    padding: 10px 15px;
+    cursor: pointer;
+    background-color: var(--cor-principal);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Botão secundário de exportação */
+#busca-filme button:last-child {
+    background-color: var(--cor-secundaria);
+}
+#busca-filme button:last-child:hover {
+    background-color: #5a6268;
+}
+
+/* ==================================== */
+/* 4. Tabela de Filmes                  */
+/* ==================================== */
+
+#lista-filmes {
+    background-color: var(--cor-card);
+    box-shadow: var(--sombra);
+    border-radius: 8px;
+    overflow: hidden; /* Garante que a borda arredondada se aplique */
+}
+
+#lista-filmes thead th {
+    background-color: var(--cor-principal);
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 15px 12px;
+}
+
+#lista-filmes tbody td {
+    padding: 12px;
+    border-bottom: 1px solid var(--cor-borda);
+    vertical-align: middle;
+}
+
+#lista-filmes tbody tr:nth-child(even) {
+    background-color: #f2f2f2; /* Listras para melhor leitura */
+}
+
+/* Poster de Filme */
+.poster {
+    width: 60px; /* Um pouco maior */
+    height: 90px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid var(--cor-borda);
+}
+
+/* Estilo para a célula de Ações */
+#lista-filmes td:last-child {
+    width: 100px; /* Largura fixa para o botão */
+    text-align: center;
+}
+
+/* ==================================== */
+/* 5. Responsividade (Opcional, mas útil) */
+/* ==================================== */
+
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    
+    #busca-filme input {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    #busca-filme button {
+        width: 100%;
+        margin-bottom: 5px;
+    }
+
+    /* Oculta colunas menos importantes em telas pequenas (manter Poster, Título e Ações) */
+    #lista-filmes th:nth-child(3), 
+    #lista-filmes td:nth-child(3), /* Diretor */
+    #lista-filmes th:nth-child(4),
+    #lista-filmes td:nth-child(4) { /* Ano */
+        display: none;
+    }
+}
